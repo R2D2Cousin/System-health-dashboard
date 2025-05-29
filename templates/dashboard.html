@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>System Health Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <meta http-equiv="refresh" content="5">
+</head>
+<body>
+    <div class="container">
+        <h1>System Health Dashboard</h1>
+
+        <div class="card">
+            <h2>CPU Usage</h2>
+            <p>{{ cpu }}%</p>
+        </div>
+
+        <div class="card">
+            <h2>Memory Usage</h2>
+            <p>{{ memory.percent }}% used of {{ (memory.total / (1024**3)) | round(2) }} GB</p>
+        </div>
+
+        <div class="card">
+            <h2>Disk Usage</h2>
+            <p>{{ disk.percent }}% used of {{ (disk.total / (1024**3)) | round(2) }} GB</p>
+        </div>
+
+        <div class="card">
+            <h2>Battery</h2>
+            {% if battery %}
+                <p>{{ battery.percent }}% - {% if battery.power_plugged %}Charging{% else %}Not Charging{% endif %}</p>
+            {% else %}
+                <p>Battery info not available</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
